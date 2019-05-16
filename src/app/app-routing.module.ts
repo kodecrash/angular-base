@@ -4,6 +4,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { AboutComponent } from './pages/about/about.component';
 import { LoginComponent } from './pages/login/login.component';
 import { CreateTicketComponent } from './pages/create-ticket/create-ticket.component';
+import { TicketsComponent } from './pages/tickets/tickets.component';
 
 
 const routes: Routes = [
@@ -11,7 +12,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent, pathMatch: 'full'},
   {path: 'home', component: HomeComponent, pathMatch: 'full'},
   {path: 'about', component: AboutComponent, pathMatch: 'full'},
-  {path: 'createticket', component: CreateTicketComponent, pathMatch: 'full'}
+  {path: 'createticket', component: CreateTicketComponent, pathMatch: 'full'},
+  {path: 'tickets', component: TicketsComponent, pathMatch: 'full'}
 ];
 
 

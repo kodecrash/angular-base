@@ -16,33 +16,43 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class DatePickerComponent implements OnInit, ControlValueAccessor {
 
-  @Input() datevalue: Date;
+  // tslint:disable-next-line:no-input-rename
+  @Input('dateValue') _dateValue: Date;
   public bsConfig;
   private bsValue: Date;
+
+  propagateChange  = (_: any) => {};
+  get dateValue() {
+    return this._dateValue;
+  }
+
+  set dateValue(val) {
+    this._dateValue = val;
+    this.propagateChange(val);
+  }
 
   constructor() {
   }
 
   ngOnInit() {
     this.bsConfig = Object.assign({}, { containerClass: 'theme-dark-blue' });
-    this.bsValue = new Date(this.datevalue);
   }
 
   onDateChange(date: Date) {
-    console.log(date);
+    this.dateValue = date;
   }
+
 
   writeValue(value: any): void {
     if (value) {
-      this.bsValue =  new Date(value);
+      this.dateValue =  value;
     }
-
   }
   registerOnChange(fn: any): void {
-
+    this.propagateChange = fn;
   }
   registerOnTouched(fn: any): void {
-
+    console.log('register on touched.');
   }
   setDisabledState?(isDisabled: boolean): void {
 

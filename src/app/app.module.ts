@@ -13,6 +13,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 import { CreateTicketComponent } from './pages/create-ticket/create-ticket.component';
 import { DatePickerComponent } from './shared/date-picker/date-picker.component';
+import { TicketsComponent } from './pages/tickets/tickets.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { DatePickerComponent } from './shared/date-picker/date-picker.component'
     SideNavComponent,
     LoginComponent,
     DatePickerComponent,
-    CreateTicketComponent
+    CreateTicketComponent,
+    TicketsComponent
   ],
   imports: [
     BrowserModule,
