@@ -14,6 +14,10 @@ import { HttpClientModule} from '@angular/common/http';
 import { CreateTicketComponent } from './pages/create-ticket/create-ticket.component';
 import { DatePickerComponent } from './shared/date-picker/date-picker.component';
 import { TicketsComponent } from './pages/tickets/tickets.component';
+import { ModalService } from './services/modal.service';
+import { ModalComponent } from './shared/modal/modal.component';
+import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { SpinnerService } from './services/spinner.service';
 
 
 @NgModule({
@@ -26,7 +30,9 @@ import { TicketsComponent } from './pages/tickets/tickets.component';
     LoginComponent,
     DatePickerComponent,
     CreateTicketComponent,
-    TicketsComponent
+    TicketsComponent,
+    ModalComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +43,8 @@ import { TicketsComponent } from './pages/tickets/tickets.component';
     HttpClientModule
 
   ],
-  providers: [ NavService ],
+  entryComponents: [ModalComponent],
+  providers: [ NavService, ModalService, SpinnerService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

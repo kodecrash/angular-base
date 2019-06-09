@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from './../../services/authentication.service';
 import { User } from 'src/app/models';
+import { SpinnerService } from 'src/app/services/spinner.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthenticationService) {
+    private authService: AuthenticationService,
+    private spinnerService: SpinnerService) {
 
   }
 
@@ -43,10 +45,12 @@ export class LoginComponent implements OnInit {
       return;
     }
 
+     this.spinnerService.showSpinner();
      console.log(this.loginForm);
      const user: User = this.loginForm.value;
      this.authService.login(user).subscribe((data) => {
        if (data && data.id) {
+        this.spinnerService.hideSpinner();
         this.router.navigate([this.returnUrl]);
        }
      });

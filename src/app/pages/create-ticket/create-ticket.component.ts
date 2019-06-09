@@ -1,7 +1,7 @@
-import { Component, OnInit, TemplateRef, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BsModalService, BsModalRef  } from 'ngx-bootstrap/modal';
+import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
   selector: 'app-create-ticket',
@@ -9,14 +9,12 @@ import { BsModalService, BsModalRef  } from 'ngx-bootstrap/modal';
   styleUrls: ['./create-ticket.component.scss']
 })
 export class CreateTicketComponent implements OnInit {
-  modalRef: BsModalRef;
   form: FormGroup;
   submitted = false;
   dateValue: Date = new Date();
-  @ViewChild('modalTemplate') modalTemplate: ElementRef;
 
   constructor(private formBuilder: FormBuilder, private router: Router,
-    private modalService: BsModalService) {
+    private modalService: ModalService) {
   }
 
   ngOnInit() {
@@ -45,15 +43,15 @@ export class CreateTicketComponent implements OnInit {
     this.submitted = true;
     // stop here if form is invalid
     if (this.form.invalid) {
+      const modalConfig: any = {
+        title: 'Success!',
+        content: 'Overridden Lorem Ipsum Text'
+      };
+      this.modalService.openAppModal(modalConfig);
       return;
     }
-
-   // this.openModal(this.modalTemplate.nativeElement);
 
    this.router.navigate(['home']);
   }
 
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
-  }
 }

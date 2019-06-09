@@ -22,6 +22,8 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
   private bsValue: Date;
 
   propagateChange  = (_: any) => {};
+  onTouched: any = () => { };
+
   get dateValue() {
     return this._dateValue;
   }
@@ -29,6 +31,7 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
   set dateValue(val) {
     this._dateValue = val;
     this.propagateChange(val);
+    this.onTouched();
   }
 
   constructor() {
@@ -52,7 +55,7 @@ export class DatePickerComponent implements OnInit, ControlValueAccessor {
     this.propagateChange = fn;
   }
   registerOnTouched(fn: any): void {
-    console.log('register on touched.');
+      this.onTouched = fn;
   }
   setDisabledState?(isDisabled: boolean): void {
 
